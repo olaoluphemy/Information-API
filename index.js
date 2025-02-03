@@ -2,6 +2,7 @@ const dotenv = require("dotenv");
 const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
+const { getUserDetails } = require("./controllers/userController");
 
 dotenv.config({ path: "./config.env" });
 
@@ -23,23 +24,10 @@ app.use((req, res, next) => {
 });
 
 // 3) Routes
-app.route("/api/v1/user").get((_req, res) => {
-  const data = {
-    email: "bidesim8@gmail.com",
-    current_datetime: new Date().toISOString(),
-    github_url: "https://github.com/olaoluphemy/repo",
-  };
-
-  // res.status(200).json({
-  //   message: "success",
-  //   data,
-  // });
-
-  res.status(200).json(data);
-});
+app.route("/api/v1/user").get(getUserDetails);
 
 // 4) Server
-const port = 8000;
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
