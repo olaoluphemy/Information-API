@@ -30,10 +30,12 @@ app.route("/api/v1/user").get((_req, res) => {
     github_url: "https://github.com/olaoluphemy/repo",
   };
 
-  res.status(200).json({
-    message: "success",
-    data,
-  });
+  // res.status(200).json({
+  //   message: "success",
+  //   data,
+  // });
+
+  res.status(200).json(data);
 });
 
 // 4) Server
